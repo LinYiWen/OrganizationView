@@ -1,0 +1,6 @@
+framework module OrganizationView {
+  umbrella header "OrganizationView-umbrella.h"
+
+  export *
+  module * { export * }
+}

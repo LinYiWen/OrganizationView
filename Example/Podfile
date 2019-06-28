@@ -1,0 +1,15 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'OrganizationView_Example' do
+  pod 'OrganizationView', :path => '../'
+
+  pod 'Masonry'
+  
+  target 'OrganizationView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

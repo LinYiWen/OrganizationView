@@ -1,0 +1,24 @@
+PODS:
+  - Masonry (1.1.0)
+  - OrganizationView (0.1.0):
+    - Masonry
+
+DEPENDENCIES:
+  - Masonry
+  - OrganizationView (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Masonry
+
+EXTERNAL SOURCES:
+  OrganizationView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  OrganizationView: d45d623940100c6e19f77833e4eead58b66ef770
+
+PODFILE CHECKSUM: e8925c04d38bc8f342c8bad655a99c24fbb03168
+
+COCOAPODS: 1.5.3

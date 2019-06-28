@@ -1,0 +1,6 @@
+framework module Pods_OrganizationView_Example {
+  umbrella header "Pods-OrganizationView_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
