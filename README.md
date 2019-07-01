@@ -24,8 +24,8 @@ pod 'OrganizationView'
 
 根据数据源和自定义view，自动生成团队组织架构图View，可根据数据量自动约束高度和宽度
 
-![](https://github.com/LinYiWen/OrganizationView/blob/master/preview/screenshot1.jpeg)
-![](https://github.com/LinYiWen/OrganizationView/blob/master/preview/screenshot2.jpeg)
+![GitHub set up-w150](https://github.com/LinYiWen/OrganizationView/blob/master/preview/screenshot1.jpeg)
+![GitHub set up-w150](https://github.com/LinYiWen/OrganizationView/blob/master/preview/screenshot2.jpeg)
 
 ## Usage
 
