@@ -12,6 +12,8 @@
 
 #import "OSBaseStructModel.h"
 #import "OSBaseStructView.h"
+#import "OSBaseUnitView.h"
+#import "OSViewConfigObj.h"
 
 FOUNDATION_EXPORT double OrganizationViewVersionNumber;
 FOUNDATION_EXPORT const unsigned char OrganizationViewVersionString[];

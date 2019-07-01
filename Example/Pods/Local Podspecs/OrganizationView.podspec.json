@@ -19,6 +19,11 @@
     "ios": "8.0"
   },
   "source_files": "OrganizationView/Classes/**/*",
+  "resource_bundles": {
+    "OrganizationView": [
+      "OrganizationView/Assets/*.png"
+    ]
+  },
   "dependencies": {
     "Masonry": [
 

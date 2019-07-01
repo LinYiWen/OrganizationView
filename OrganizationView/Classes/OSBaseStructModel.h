@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OSBaseStructModel : NSObject
 
-@property (nonatomic, assign) NSInteger level; //等级
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, assign) NSInteger level; //等级从0开始,必填
 
 @property (nonatomic, strong) NSArray<OSBaseStructModel *> *subArray;
 

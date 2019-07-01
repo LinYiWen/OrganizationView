@@ -22,6 +22,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		78D9835E22C9D70400D70A4B /* OSCustomStructModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9835D22C9D70400D70A4B /* OSCustomStructModel.m */; };
+		78D9836122C9D72A00D70A4B /* OSCustomeUnitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9836022C9D72A00D70A4B /* OSCustomeUnitView.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		C137D627FC5E50D34D6D9483 /* Pods_OrganizationView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E12348EEDDF892D73B25880 /* Pods_OrganizationView_Example.framework */; };
 /* End PBXBuildFile section */
@@ -60,9 +62,13 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		674E3255ACB0CC8169F3398C /* Pods_OrganizationView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrganizationView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		78D9835C22C9D70400D70A4B /* OSCustomStructModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSCustomStructModel.h; sourceTree = "<group>"; };
+		78D9835D22C9D70400D70A4B /* OSCustomStructModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSCustomStructModel.m; sourceTree = "<group>"; };
+		78D9835F22C9D72A00D70A4B /* OSCustomeUnitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSCustomeUnitView.h; sourceTree = "<group>"; };
+		78D9836022C9D72A00D70A4B /* OSCustomeUnitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSCustomeUnitView.m; sourceTree = "<group>"; };
 		83F38CDAFD3F7BC2AC69F270 /* Pods-OrganizationView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrganizationView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-OrganizationView_Example/Pods-OrganizationView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9A691F7665A2875459F4E444 /* OrganizationView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = OrganizationView.podspec; path = ../OrganizationView.podspec; sourceTree = "<group>"; };
+		9A691F7665A2875459F4E444 /* OrganizationView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = OrganizationView.podspec; path = ../OrganizationView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A970743B599F00CD063D6A45 /* Pods-OrganizationView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrganizationView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OrganizationView_Tests/Pods-OrganizationView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ADBE844B267858D49BB0005C /* Pods-OrganizationView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrganizationView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OrganizationView_Tests/Pods-OrganizationView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		EFB64CE146C3EAE9A688E24D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -137,6 +143,10 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* OSViewController.h */,
 				6003F5A6195388D20070C39A /* OSViewController.m */,
+				78D9835C22C9D70400D70A4B /* OSCustomStructModel.h */,
+				78D9835D22C9D70400D70A4B /* OSCustomStructModel.m */,
+				78D9835F22C9D72A00D70A4B /* OSCustomeUnitView.h */,
+				78D9836022C9D72A00D70A4B /* OSCustomeUnitView.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -347,23 +357,19 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-OrganizationView_Example/Pods-OrganizationView_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-OrganizationView_Example/Pods-OrganizationView_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/OrganizationView/OrganizationView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OrganizationView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OrganizationView_Example/Pods-OrganizationView_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OrganizationView_Example/Pods-OrganizationView_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -376,6 +382,8 @@
 				6003F59E195388D20070C39A /* OSAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* OSViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				78D9836122C9D72A00D70A4B /* OSCustomeUnitView.m in Sources */,
+				78D9835E22C9D70400D70A4B /* OSCustomStructModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +519,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -528,6 +537,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

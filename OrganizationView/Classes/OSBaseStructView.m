@@ -8,6 +8,7 @@
 
 #import "OSBaseStructView.h"
 #import "Masonry.h"
+#import "OSBaseUnitView.h"
 
 @interface OSBaseStructView ()
 
@@ -15,30 +16,26 @@
 @property (nonatomic, strong)UIView *line_v; //竖直线
 @property (nonatomic, strong)UIButton *collapseBtn; //展开或收回按钮    selected = YES 为打开状态
 
-@property (nonatomic, strong)UIView *mainCell; //主条
-@property (nonatomic, strong)UILabel *titleLabel; //主条title
+@property (nonatomic, strong)OSBaseUnitView *mainCell; //主cell
 @property (nonatomic, strong)UIView *subStructView; //子结构背景
 @property (nonatomic, strong)NSMutableArray<OSBaseStructView *> *structViewArray; //子结构数组
 
 @property (nonatomic, assign) CGFloat cellLeftMargin;
 
 @property (nonatomic, strong) OSBaseStructModel *model;
+@property (nonatomic, strong) OSViewConfigObj *config;
+
 
 @end
 
-static const CGFloat margin = 10; //间隙
-static const CGFloat cellWidth = 200; //cell宽度
-static const CGFloat cellHeight = 40; //cell高度
-static const CGFloat lineLength = 30; //横线长度
-static const CGFloat lineMargin = 20; //竖线与cell的边距
-
 @implementation OSBaseStructView
 
-- (instancetype)initWithData:(OSBaseStructModel *)data
+- (instancetype)initWithData:(OSBaseStructModel *)data Config:(nullable OSViewConfigObj *)config
 {
     if (self = [super initWithFrame:CGRectZero])
     {
         _model = data;
+        _config = config ? config : [OSViewConfigObj new];
         _structViewArray = [NSMutableArray array];
         [self initialUI];
     }
@@ -47,67 +44,39 @@ static const CGFloat lineMargin = 20; //竖线与cell的边距
 
 - (void)initialUI
 {
-    self.backgroundColor = [UIColor cyanColor];
-    
-    UIColor *color = [UIColor redColor];
-    
-    _cellLeftMargin = margin + (_model.level - 1) * (lineMargin + lineLength); //cell的左边距
-    
-    switch (_model.level) {
-        case 2:
-            color = [UIColor greenColor];
-            break;
-        case 3:
-            color = [UIColor orangeColor];
-            break;
-        case 4:
-            color = [UIColor purpleColor];
-            break;
-            
-        default:
-            break;
-    }
+    _cellLeftMargin = _config.margin + (_model.level) * (_config.lineMargin + _config.lineLength); //cell的左边距
     
     //--------------cell--------------
-    _mainCell = [UIView new];
-    _mainCell.backgroundColor = color;
+    _mainCell = [self.config.cellClass new];
     [self addSubview:_mainCell];
     [_mainCell mas_makeConstraints:^(MASConstraintMaker *make)
     {
         make.left.equalTo(self).offset(self.cellLeftMargin);
-        make.top.equalTo(self).offset(margin);
-        make.width.mas_equalTo(cellWidth);
-        make.height.mas_equalTo(cellHeight);
+        make.top.equalTo(self).offset(self.config.margin);
+        make.width.mas_equalTo(self.config.cellWidth);
+        make.height.mas_equalTo(self.config.cellHeight);
     }];
-    
-    //--------------文字--------------
-    _titleLabel = [UILabel new];
-    _titleLabel.textColor = [UIColor whiteColor];
-    _titleLabel.text = _model.title;
-    [_mainCell addSubview:_titleLabel];
-    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make)
-    {
-        make.edges.equalTo(self.mainCell);
-    }];
+    _mainCell.model = _model;
+    [_mainCell renderUI];
     
     //--------------横线--------------
     _line_h = [UIView new];
-    _line_h.backgroundColor = [UIColor grayColor];
+    _line_h.backgroundColor = self.config.lineColor;
     [self addSubview:_line_h];
     [_line_h mas_makeConstraints:^(MASConstraintMaker *make)
     {
         make.right.equalTo(self.mainCell.mas_left);
-        make.width.mas_equalTo(lineLength);
+        make.width.mas_equalTo(self.config.lineLength);
         make.centerY.equalTo(self.mainCell);
         make.height.mas_equalTo(0.8);
     }];
     
-    
     //--------------展开按钮--------------
     _collapseBtn = [UIButton new];
-    _collapseBtn.backgroundColor = [UIColor yellowColor];
     [_collapseBtn addTarget:self action:@selector(collapseBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_collapseBtn setTitle:@"+" forState:UIControlStateNormal];
+    
+    [_collapseBtn setImage:self.config.plusImage forState:UIControlStateNormal];
+    [_collapseBtn setImage:self.config.dashImage forState:UIControlStateSelected];
     [self addSubview:_collapseBtn];
     [_collapseBtn mas_makeConstraints:^(MASConstraintMaker *make)
     {
@@ -119,21 +88,20 @@ static const CGFloat lineMargin = 20; //竖线与cell的边距
     
     //子cell
     _subStructView = [UIView new];
-    _subStructView.backgroundColor = [UIColor purpleColor];
     _subStructView.hidden = YES;
     [self addSubview:_subStructView];
     [_subStructView mas_makeConstraints:^(MASConstraintMaker *make)
     {
         make.left.equalTo(self);
-        make.top.equalTo(self.mainCell.mas_bottom).offset(margin);
-        make.width.mas_equalTo(self.cellLeftMargin + cellWidth);
+        make.top.equalTo(self.mainCell.mas_bottom).offset(self.config.margin);
+        make.width.mas_equalTo(self.cellLeftMargin + self.config.cellWidth);
     }];
     
     for (OSBaseStructModel *subModel in self.model.subArray)
     {
         UIView *preView = self.structViewArray.lastObject;
         
-        OSBaseStructView *subView = [[OSBaseStructView alloc] initWithData:subModel];
+        OSBaseStructView *subView = [[OSBaseStructView alloc] initWithData:subModel Config:self.config];
         [_subStructView addSubview:subView];
         [subView mas_makeConstraints:^(MASConstraintMaker *make)
          {
@@ -153,15 +121,14 @@ static const CGFloat lineMargin = 20; //竖线与cell的边距
     //--------------竖线--------------
     
     _line_v = [UIView new];
-    _line_v.backgroundColor = [UIColor grayColor];
+    _line_v.backgroundColor = self.config.lineColor;
     [self addSubview:_line_v];
     [_line_v mas_makeConstraints:^(MASConstraintMaker *make)
      {
          make.top.equalTo(self.mainCell.mas_bottom);
-         make.left.equalTo(self.mainCell).offset(lineMargin);
+         make.left.equalTo(self.mainCell).offset(self.config.lineMargin);
          make.width.mas_equalTo(0.8);
      }];
-    
     
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         
@@ -169,8 +136,8 @@ static const CGFloat lineMargin = 20; //竖线与cell的边距
         make.right.equalTo(self.subStructView);
     }];
     
-    //level = 1 按钮默认打开,且隐藏横线和按钮
-    if (self.model.level == 1)
+    //level = 0 按钮默认打开,且隐藏横线和按钮
+    if (self.model.level == 0)
     {
         [self collapseBtnClick:_collapseBtn];
         self.line_h.hidden = YES;
@@ -194,8 +161,6 @@ static const CGFloat lineMargin = 20; //竖线与cell的边距
     [self setNeedsUpdateConstraints];
 }
 
-
-
 - (void)updateConstraints
 {
     if (self.collapseBtn.selected && self.structViewArray.lastObject)
@@ -204,7 +169,7 @@ static const CGFloat lineMargin = 20; //竖线与cell的边距
         [self.subStructView mas_remakeConstraints:^(MASConstraintMaker *make) {
             
             make.left.equalTo(self);
-            make.top.equalTo(self.mainCell.mas_bottom).offset(margin);
+            make.top.equalTo(self.mainCell.mas_bottom).offset(self.config.margin);
             make.bottom.equalTo(self.structViewArray.lastObject).offset(0);
             
             for (UIView *cell in self.structViewArray)
@@ -216,7 +181,7 @@ static const CGFloat lineMargin = 20; //竖线与cell的边距
         _line_v.hidden = NO;
         [_line_v mas_updateConstraints:^(MASConstraintMaker *make)
         {
-            make.bottom.equalTo(self.subStructView).offset(-cellHeight*0.5 - margin);
+            make.bottom.equalTo(self.subStructView).offset(-self.config.cellHeight*0.5 - self.config.margin);
         }];
 
     }else
@@ -225,8 +190,8 @@ static const CGFloat lineMargin = 20; //竖线与cell的边距
         [self.subStructView mas_remakeConstraints:^(MASConstraintMaker *make) {
             
             make.left.equalTo(self);
-            make.top.equalTo(self.mainCell.mas_bottom).offset(margin);
-            make.width.mas_equalTo(self.cellLeftMargin + cellWidth + margin);
+            make.top.equalTo(self.mainCell.mas_bottom).offset(self.config.margin);
+            make.width.mas_equalTo(self.cellLeftMargin + self.config.cellWidth + self.config.margin);
             make.height.mas_equalTo(0);
         }];
         _line_v.hidden = YES;
