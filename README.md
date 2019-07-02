@@ -11,6 +11,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+[Masonry](https://github.com/SnapKit/Masonry)
+
 ## Installation
 
 OrganizationView is available through [CocoaPods](https://cocoapods.org). To install
